@@ -2,4 +2,8 @@ docker container run nginx -> Verifica se a imagem contem no docker deamon, caso
 docker container ls -> Lista todos containers ativos.
 docker container ls -a -> Lista todos containers independente do status.
 docker container run --name nome -> Cria um container com o nome.
+docker container run -it ubuntu /bin/bash -> Cria container com a imagem e entra no modo iterativo.
+docker container --rm -it ubuntu /bin/bash -> Cria o container com a imagem entra no modo iterativo e remove o container após sair dele.
+
+
 
