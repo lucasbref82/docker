@@ -1,9 +1,13 @@
-docker container run nginx -> Verifica se a imagem contem no docker deamon, caso não exista busca no docker hub.
-docker container ls -> Lista todos containers ativos.
-docker container ls -a -> Lista todos containers independente do status.
-docker container run --name nome -> Cria um container com o nome.
-docker container run -it ubuntu /bin/bash -> Cria container com a imagem e entra no modo iterativo.
-docker container --rm -it ubuntu /bin/bash -> Cria o container com a imagem entra no modo iterativo e remove o container após sair dele.
-
-
-
+docker container run nginx                          # Verifica se a imagem existe no Docker Daemon, senão baixa do Docker Hub e executa.
+docker container ls                                 # Lista todos os containers ativos.
+docker container ls -a                              # Lista todos os containers, independentemente do status.
+docker container run --name meu_container nginx     # Cria um container com um nome específico.
+docker container run -it ubuntu /bin/bash          # Cria um container com a imagem e entra no modo interativo.
+docker container run --rm -it ubuntu /bin/bash     # Cria, entra no modo interativo e remove o container ao sair.
+docker container run -d nginx                      # Executa o container no background (modo detached).
+docker exec -it fe1 /bin/bash                      # Acessa um container já existente em modo interativo.
+docker container run -d -p 8080:80 nginx           # Executa o container no background e mapeia portas (host:container).
+docker container ls -qa                            # Lista apenas os IDs dos containers.
+docker container rm -f $(docker container ls -qa)  # Remove todos os containers de uma vez.
+docker container run -p 3306:3306 -d --name meumysql -e MYSQL_ROOT_PASSWORD="acesso_root" -e MYSQL_DATABASE=devops -e MYSQL_USER=devops -e MYSQL_PASSWORD=devops mysql # Passado parametros obrigatórios para criação do container com a imagem do MYSQL.
+	
