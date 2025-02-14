@@ -1,0 +1,5 @@
+docker container run nginx -> Verifica se a imagem contem no docker deamon, caso não exista busca no docker hub.
+docker container ls -> Lista todos containers ativos.
+docker container ls -a -> Lista todos containers independente do status.
+docker container run --name nome -> Cria um container com o nome.
+
