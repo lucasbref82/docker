@@ -12,6 +12,10 @@ docker container run -p 3306:3306 -d --name meumysql -e MYSQL_ROOT_PASSWORD="ace
 docker container cp . 70cf4894a2dd:/app            # O comando copia todos os arquivos do diretório atual para dentro do container Docker no caminho /app, permitindo atualizar arquivos sem recriar o container.
 docker container run -it --mount type=bind,source="$(pwd)/aula_vol",target=/app ubuntu /bin/bash # Executa o container em modo iterativo montando um volume do tipo bindm especificando o tipo origem destino.
 
+
+docker container run --volumes-from 23a4fd1c2f6d --rm -v $(pwd):/backup ubuntu:22.04 tar cvf /backup/backup_vol.tar /app #Executa o comando e faz backup do diretório /app de um container em um arquivo .tar no diretório atual do host
+docker container run -v $(pwd):/backup -v novo_volume:/app ubuntu:22.04 tar xvf /backup/backup_vol.tar  Excecuta o comando e restaura esse backup para um novo volume no diretório /app de outro container.
+
 -------------------------------------------------------------------------------------------------------------
 docker exec -it fe1 /bin/bash                      # Acessa um container já existente em modo interativo.
 
