@@ -10,6 +10,7 @@ docker container ls -qa                            # Lista apenas os IDs dos con
 docker container rm -f $(docker container ls -qa)  # Remove todos os containers de uma vez.
 docker container run -p 3306:3306 -d --name meumysql -e MYSQL_ROOT_PASSWORD="acesso_root" -e MYSQL_DATABASE=devops -e MYSQL_USER=devops -e MYSQL_PASSWORD=devops mysql # Passado parametros obrigatórios para criação do container com a imagem do MYSQL.
 docker container cp . 70cf4894a2dd:/app            # O comando copia todos os arquivos do diretório atual para dentro do container Docker no caminho /app, permitindo atualizar arquivos sem recriar o container.
+docker container run -it --mount type=bind,source="$(pwd)/aula_vol",target=/app ubuntu /bin/bash # Executa o container em modo iterativo montando um volume do tipo bindm especificando o tipo origem destino.
 
 -------------------------------------------------------------------------------------------------------------
 docker exec -it fe1 /bin/bash                      # Acessa um container já existente em modo interativo.
@@ -28,5 +29,10 @@ docker image inspect node_copy > imagem.json       # Cria a saída do comando em
 -------------------------------------------------------------------------------------------------------------
 docker build -t ubuntu_curl -f Dockerfile .         # Constroi a imagem com base no dockermfile o -t significa o nome da imagem e o -f o arquivo o ponto é onde será criada a imagem.
 docker build -t ubuntu_curl --build-arg "VAR_TEXTO=Lucas Brenner" -f Dockerfile . # Constroi a imagem passando um parametro valor como argumento a um ARG criado no docker file
+
+--------------------------------------------------------------------------------------------------------------
+docker volume create aula_vol # Cria o volume
+docker volume ls # Lista os volumes
+docker volume rm # Remove o volume
 
 
