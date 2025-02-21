@@ -1,0 +1,35 @@
+services:
+  posgre:
+    image: postgres:12.17
+    container_name: postgre_container
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: Pg#123
+      POSTGRES_USER: kubedevnews
+      POSTGRES_DB: kubedevnews
+    volumes:
+      - postgre_volume:/var/lib/postgresql/data
+    networks: 
+      - geral_network
+  kubenews:
+    image: lucasbref82/kubenews:v1
+    container_name: kubenews_container
+    ports:
+      - 8080:8080
+    environment:
+      DB_PASSWORD: Pg#123
+      DB_USERNAME: kubedevnews
+      DB_DATABASE: kubedevnews
+      DB_HOST: postgre_container
+    networks: 
+      - geral_network
+volumes:
+  postgre_volume:
+    name: postgre_volume
+    external: true
+networks:
+  geral_network:
+    driver: bridge
+
+  
