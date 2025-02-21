@@ -16,6 +16,11 @@ docker container run -it --mount type=bind,source="$(pwd)/aula_vol",target=/app 
 docker container run --volumes-from 23a4fd1c2f6d --rm -v $(pwd):/backup ubuntu:22.04 tar cvf /backup/backup_vol.tar /app #Executa o comando e faz backup do diretório /app de um container em um arquivo .tar no diretório atual do host
 docker container run -v $(pwd):/backup -v novo_volume:/app ubuntu:22.04 tar xvf /backup/backup_vol.tar  Excecuta o comando e restaura esse backup para um novo volume no diretório /app de outro container.
 
+
+docker container run -d -p 5432:5432 --name kubenew_db -e POSTGRES_PASSWORD=Pg#123 -e POSTGRES_USER=kubedevnews -e POSTGRES_DB=kubedevnews --network kubenews_net -v kubenews_vol:/var/lib/postgresql/data postgres:12.17
+
+Acima rodando um container completo com volume e network.
+
 -------------------------------------------------------------------------------------------------------------
 docker exec -it fe1 /bin/bash                      # Acessa um container já existente em modo interativo.
 
@@ -42,5 +47,7 @@ docker volume rm # Remove o volume
 ---------------------------------------------------------------------------------------------------------------
 docker network ls # Lista todas as redes criadas no meu container
 docker network rm # Remove a rede.
+docker network connect aula_docker nginx # Vicula o meu container a um network criado manualmente
+docker network disconnet nome_rede nginx # Desconecta meu container da rede
 
 
