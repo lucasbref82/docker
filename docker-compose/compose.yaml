@@ -4,26 +4,28 @@ services:
     container_name: postgre_container
     ports:
       - 5432:5432
+    networks: 
+      - geral_network
+    volumes:
+      - postgre_volume:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: Pg#123
       POSTGRES_USER: kubedevnews
       POSTGRES_DB: kubedevnews
-    volumes:
-      - postgre_volume:/var/lib/postgresql/data
-    networks: 
-      - geral_network
   kubenews:
     image: lucasbref82/kubenews:v1
     container_name: kubenews_container
     ports:
       - 8080:8080
+    networks: 
+      - geral_network
     environment:
       DB_PASSWORD: Pg#123
       DB_USERNAME: kubedevnews
       DB_DATABASE: kubedevnews
       DB_HOST: postgre_container
-    networks: 
-      - geral_network
+    depends_on:
+      - posgre
 volumes:
   postgre_volume:
     name: postgre_volume
