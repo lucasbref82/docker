@@ -39,4 +39,8 @@ docker volume create aula_vol # Cria o volume
 docker volume ls # Lista os volumes
 docker volume rm # Remove o volume
 
+---------------------------------------------------------------------------------------------------------------
+docker network ls # Lista todas as redes criadas no meu container
+docker network rm # Remove a rede.
+
 
