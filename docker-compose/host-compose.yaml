@@ -1,8 +1,0 @@
-services:
-  nginx:
-    image: nginx
-    network_mode: host
-  curl:
-    image: nginx
-    extra_hosts:
-      aula_docker.lucas.com: 172.18.247.210
