@@ -9,8 +9,8 @@ services:
     volumes:
       - postgre_volume:/var/lib/postgresql/data
     environment:
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-kubenews}
-      POSTGRES_USER: ${POSTGRES_USER:-Pg123}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-Pg123}
+      POSTGRES_USER: ${POSTGRES_USER:-kubenews}
       POSTGRES_DB: ${POSTGRES_DB:-kubenews}
   kubenews:
     image: lucasbref82/kubenews:${KUBE_NEWS_TAG:-latest}
@@ -23,8 +23,8 @@ services:
     networks: 
       - geral_network
     environment:
-      DB_PASSWORD: ${POSTGRES_PASSWORD:-kubenews}
-      DB_USERNAME: ${POSTGRES_USER:-Pg123}
+      DB_PASSWORD: ${POSTGRES_PASSWORD:-Pg123}
+      DB_USERNAME: ${POSTGRES_USER:-kubenews}
       DB_DATABASE: ${POSTGRES_DB:-kubenews}
       DB_HOST: postgre_container
     depends_on:
